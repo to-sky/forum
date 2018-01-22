@@ -12,9 +12,9 @@ class ReplyTest extends TestCase
     /** @test */
     public function unauthenticated_user_cant_create_reply()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = create('App\Thread');
 
-        $reply = factory('App\Reply')->create();
+        $reply = create('App\Reply');
 
         $this->post($thread->path().'/replies', $reply->toArray())
             ->assertRedirect('/login');
@@ -23,7 +23,7 @@ class ReplyTest extends TestCase
     /** @test */
     public function it_has_an_owner()
     {
-        $reply = factory('App\Reply')->create();
+        $reply = create('App\Reply');
 
         $this->assertInstanceOf('App\User', $reply->owner);
     }
