@@ -68,7 +68,7 @@ class Thread extends Model
     }
 
     /**
-     * Filtering threads.
+     * Thread filter.
      *
      * @param $query
      * @param $filters

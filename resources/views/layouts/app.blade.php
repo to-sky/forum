@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style="padding-bottom: 100px">
+<body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -40,18 +40,27 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">Browse <span class="caret"></span></a>
+
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('threads.index') }}">All Threads</a></li>
+
                                 @if(auth()->check())
                                     <li><a href="{{ route('threads.index', ['by' => auth()->user()->name ]) }}">My Threads</a></li>
                                 @endif
+
+                                <li>
+                                    <a href="{{ route('threads.index', ['popular' => 1]) }}">Popular Threads</a>
+                                </li>
                             </ul>
+
+                        <li>
+                            <a href="{{ route('threads.create') }}">New Thread</a>
                         </li>
 
-                        <li><a href="{{ route('threads.create') }}">New Thread</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">Channels <span class="caret"></span></a>
+
                             <ul class="dropdown-menu">
                                 @foreach($channels as $channel)
                                     <li><a href="/threads/{{ $channel->slug }}">{{ ucfirst($channel->name) }}</a></li>
